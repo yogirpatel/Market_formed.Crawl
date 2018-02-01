@@ -40,7 +40,30 @@ class MarketBetaSpider(CrawlSpider):
         item['rent'] = hxs.xpath('//html/body/main/div/main/div[2]/div/div[4]/div[1]/div[2]/div[2]/form/div[1]/div/div/div/div/div[1]/label/text()[normalize-space()]').extract()
         item['price'] = hxs.xpath('//html/body/main/div/main/div[2]/div/div[4]/div[1]/div[2]/div[2]/form/div[1]/div/div/div/div/div[2]/label/text()[normalize-space()]').extract() 
 	    #NOTE:  ALSO SHOWING AS //*[@id="options-1360-list"]/div[1]/label
-        item['director'] = hxs.xpath('//html/body/main/div/main/div[2]/div/div[3]/div[4]/div[2]/text()[1][normalize-space()]').extract()   item['publisher'] = hxs.xpath('//html/body/main/div/main/div[2]/div/div[3]/div[4]/div[2]/text()[2][normalize-space()]').extract()  	
+        item['director'] = hxs.xpath('//html/body/main/div/main/div[2]/div/div[3]/div[4]/div[2]/text()[1][normalize-space()]').extract()  
+
+        item['publisher'] = hxs.xpath('//html/body/main/div/main/div[2]/div/div[3]/div[4]/div[2]/text()[2][normalize-space()]').extract()  
+		
+        if str(item['subTitle']) == "":
+	         item['subTitle'] = "NONE"
+        elif str(item['productInfoMediaDetails']) == "":
+	         item['productInfoMediaDetails'] = "NONE"
+        elif str(item['description']) == "":
+	         item['description'] = "NONE"
+        elif str(item['relatedProduct1']) == "":
+	         item['relatedProduct1'] = "NONE"
+        elif str(item['relatedProduct2']) == "":
+	         item['relatedProduct2'] = "NONE"
+        elif str(item['onDemand']) == "":
+	        item['onDemand'] = "NONE"
+        elif str(item['rent']) == "":
+			item['rent'] = "NONE"
+        elif str(item['price']) == "":
+			item['price'] = "NONE"
+        elif str(item['director']) == "":
+			item['director'] = "NONE"
+        elif str(item['publisher']) == "":
+			item['publisher'] = "NONE"
         yield item
         # Now Recurse
         page = response.url
